@@ -1,5 +1,6 @@
 use clap::*;
 mod generator;
+mod pattern;
 
 fn main() {
     let app = App::new(crate_name!())
