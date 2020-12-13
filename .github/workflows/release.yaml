@@ -40,28 +40,31 @@ jobs:
           override: true
           components: rustfmt, clippy
       - uses: actions-rs/cargo@v1
+        name: show rustfmt version
         with:
           command: fmt
           args: --version
       - uses: actions-rs/cargo@v1
+        name: run rustfmt check
         with:
           command: fmt
           args: --all -- --check
       - uses: actions-rs/cargo@v1
+        name: show clippy version
         with:
           command: clippy
           args: --version
       - uses: actions-rs/cargo@v1
+        name: run clippy check
         with:
           command: clippy
       - uses: actions-rs/cargo@v1
+        name: run cargo test
         with:
           command: test
           args: --release --all-features
       - uses: actions-rs/cargo@v1
-        with:
-          command: clean
-      - uses: actions-rs/cargo@v1
+        name: publish crate
         env:
           CARGO_REGISTRY_TOKEN: ${{ secrets.CRATES_IO_TOKEN }}
         with:
