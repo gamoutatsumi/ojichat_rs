@@ -1,3 +1,4 @@
+#[derive(Clone, Copy, PartialEq, PartialOrd)]
 pub enum OjisanEmotion {
     // GREETING ... 挨拶
     GREETING,

@@ -1,18 +1,33 @@
 [package]
-name = "ojichat_rs"
+name = "ojichat"
 version = "0.1.0"
 authors = ["Tatsumi Gamou <tatsumigamou@yahoo.co.jp>"]
-description = '''
-Ojisan Nanchatte (ojichat) command
-Special Thanks to greymd (https://github.com/greymd)
-'''
 edition = "2018"
 
-# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+description = 'Ojisan Nanchatte (ojichat) library for rust'
+
+repository = "https://github.com/gamoutatsumi/ojichat_rs"
+
+readme = "README.md"
+
+license = "MIT"
+
+build = "build.rs"
 
 [dependencies]
-clap = "2.33.3"
-counted-array = "0.1.2"
-iota = "0.2.2"
+gimei = "0.1.1"
+kanaria = "0.2.0"
 lazy_static = "1.4.0"
+lindera = "0.7.1"
+lindera-core = "0.7.1"
+once_cell = "1.5.2"
 rand = "0.7.3"
+regex = "1.4.2"
+strum = { version = "0.20.0", features = ["derive"] }
+strum_macros = "0.20.1"
+
+[build-dependencies]
+skeptic = "0.13.5"
+
+[dev-dependencies]
+skeptic = "0.13.5"
