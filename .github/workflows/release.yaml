@@ -47,7 +47,7 @@ jobs:
           CRATES_IO_TOKEN: ${{ secrets.CRATES_IO_TOKEN }}
       - uses: actions-rs/cargo@v1
         with:
-          command: +nightly fmt
+          command: fmt
           args: --version
       - uses: actions-rs/cargo@v1
         with:
