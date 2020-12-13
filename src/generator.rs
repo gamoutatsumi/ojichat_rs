@@ -5,8 +5,7 @@ use lindera::tokenizer::Tokenizer;
 use lindera_core::core::viterbi::Mode;
 use rand::{thread_rng, Rng};
 
-pub struct Generator {
-}
+pub struct Generator {}
 
 #[derive(Clone)]
 struct PunctuationConfig {
@@ -14,9 +13,12 @@ struct PunctuationConfig {
     rate: i32,
 }
 
-
 impl Generator {
-    pub fn get_message(target_name: Option<String>, emoji_num: usize, punctuation_level: usize) -> String {
+    pub fn get_message(
+        target_name: Option<String>,
+        emoji_num: usize,
+        punctuation_level: usize,
+    ) -> String {
         let pconfigs: Vec<PunctuationConfig> = vec![
             PunctuationConfig {
                 target_hinshis: vec![],
@@ -33,11 +35,12 @@ impl Generator {
             PunctuationConfig {
                 target_hinshis: vec!["助動詞", "助詞"],
                 rate: 100,
-            }
+            },
         ];
 
         let level = punctuation_level;
-        let target = target_name.unwrap_or_else(Generator::get_random_firstname) + Generator::get_random_name_suffix();
+        let target = target_name.unwrap_or_else(Generator::get_random_firstname)
+            + Generator::get_random_name_suffix();
         let pattern: onara_pattern::OnaraPattern = Onara::select_pattern();
         let message = pattern.get_message(target, emoji_num);
         Generator::insert_punctuations(message, pconfigs[level].clone())
@@ -73,7 +76,7 @@ impl Generator {
     }
     fn insert_punctuations(message: String, config: PunctuationConfig) -> String {
         if config.rate == 0 {
-            return message
+            return message;
         }
         let mut rng = thread_rng();
         let mut result: String = "".to_string();

@@ -1,23 +1,23 @@
-use super::onara_messages;
-use super::tags;
-use super::ojisan_emotion::OjisanEmotion;
-use super::tag_type::TAG_TYPE;
-use super::emoji_type::EMOJI_TYPE;
 use super::emoji_tag;
+use super::emoji_type::EMOJI_TYPE;
+use super::ojisan_emotion::OjisanEmotion;
+use super::onara_messages;
+use super::tag_type::TAG_TYPE;
+use super::tags;
 
+use kanaria::string::UCSStr;
 use rand::seq::SliceRandom;
 use rand::Rng;
 use regex::Regex;
-use kanaria::string::UCSStr;
 
 #[derive(Clone)]
 pub struct OnaraPattern {
-    pattern: Vec<OjisanEmotion>
+    pattern: Vec<OjisanEmotion>,
 }
 
 impl OnaraPattern {
     pub fn new(pattern: Vec<OjisanEmotion>) -> Self {
-        OnaraPattern {pattern}
+        OnaraPattern { pattern }
     }
 
     pub fn get_message(self, target: String, emoji_num: usize) -> String {
@@ -53,7 +53,7 @@ impl OnaraPattern {
 
     fn convert_emoji(mut result: String, emoji_num: usize) -> String {
         for val in (*EMOJI_TYPE).values() {
-            let count = result.split(&format!("{{{}}}", val)).count() -1;
+            let count = result.split(&format!("{{{}}}", val)).count() - 1;
             for _ in 0..count {
                 let mut rng = rand::thread_rng();
                 let mut emoji_list = emoji_tag::select_tags(val);
@@ -76,11 +76,18 @@ impl OnaraPattern {
 
     // カタカナ活用を適用する
     fn katakana_katsuyou(message: String, number: i32) -> String {
-        let re = Regex::new(&*(r"^(.+)(\p{Hiragana}{".to_string() + &*number.to_string() + r"})([^\p{Hiragana}]*)")).unwrap();
+        let re = Regex::new(
+            &*(r"^(.+)(\p{Hiragana}{".to_string() + &*number.to_string() + r"})([^\p{Hiragana}]*)"),
+        )
+        .unwrap();
         let hiraganas = re.captures(&*message).unwrap();
         if hiraganas.len() != 4 {
-            return message
+            return message;
         }
-        hiraganas.get(1).unwrap().as_str().to_string() + &*UCSStr::from_str(hiraganas.get(2).unwrap().as_str()).katakana().to_string() + hiraganas.get(3).unwrap().as_str()
+        hiraganas.get(1).unwrap().as_str().to_string()
+            + &*UCSStr::from_str(hiraganas.get(2).unwrap().as_str())
+                .katakana()
+                .to_string()
+            + hiraganas.get(3).unwrap().as_str()
     }
 }

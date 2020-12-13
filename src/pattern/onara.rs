@@ -1,10 +1,9 @@
-use super::onara_pattern::OnaraPattern;
 use super::ojisan_emotion::OjisanEmotion;
+use super::onara_pattern::OnaraPattern;
 
 use rand::seq::SliceRandom;
 
-pub struct Onara {
-}
+pub struct Onara {}
 
 // Onara ... Ojisan NArikiri Randomized Algorithm: おじさんなりきり乱択アルゴリズム
 // おじさんの感情表現の順番を表す。
@@ -12,13 +11,22 @@ pub struct Onara {
 impl Onara {
     pub fn select_pattern() -> OnaraPattern {
         let mut patterns: Vec<OnaraPattern> = [
-            OnaraPattern::new(vec![OjisanEmotion::GREETING, OjisanEmotion::QUESTION, OjisanEmotion::SYMPATHY]),
+            OnaraPattern::new(vec![
+                OjisanEmotion::GREETING,
+                OjisanEmotion::QUESTION,
+                OjisanEmotion::SYMPATHY,
+            ]),
             OnaraPattern::new(vec![OjisanEmotion::GREETING, OjisanEmotion::REPORTING]),
             OnaraPattern::new(vec![OjisanEmotion::GREETING, OjisanEmotion::CHEERING]),
-            OnaraPattern::new(vec![OjisanEmotion::GREETING, OjisanEmotion::QUESTION, OjisanEmotion::INVITATION]),
+            OnaraPattern::new(vec![
+                OjisanEmotion::GREETING,
+                OjisanEmotion::QUESTION,
+                OjisanEmotion::INVITATION,
+            ]),
             OnaraPattern::new(vec![OjisanEmotion::PRAISING, OjisanEmotion::ADMIRATION]),
             OnaraPattern::new(vec![OjisanEmotion::SYMPATHY, OjisanEmotion::SYMPATHY]),
-        ].to_vec();
+        ]
+        .to_vec();
 
         let mut rng = rand::thread_rng();
         patterns.shuffle(&mut rng);
