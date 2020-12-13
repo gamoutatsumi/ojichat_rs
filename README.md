@@ -1,6 +1,7 @@
 # ojichat_rs
 
 [![Latest Version](https://img.shields.io/github/release/gamoutatsumi/ojichat_rs.svg)](https://github.com/gamoutatsumi/ojichat_rs/releases/latest)
+![Release](https://github.com/gamoutatsumi/ojichat_rs/workflows/Release/badge.svg)
 [![MIT LICENSE](http://img.shields.io/badge/license-MIT-blue.svg?style=flat)](LICENSE)
 
 [ojichat](https://github.com/greymd/ojichat)のRust版実装です。
