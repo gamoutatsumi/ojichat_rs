@@ -102,3 +102,41 @@ impl Generator {
         result
     }
 }
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn test_insert_punctuations1() {
+        let expected = "どうしちゃったのかな".to_string();
+        let pconfig = PunctuationConfig {
+            target_hinshis: vec!["助動詞", "名詞"],
+            rate: 0,
+        };
+        let actual = Generator::insert_punctuations("どうしちゃったのかな".to_string(), pconfig);
+        assert_eq!(expected, actual);
+    }
+
+    #[test]
+    fn test_insert_punctuations2() {
+        let expected = "どうしちゃった、のかな".to_string();
+        let pconfig = PunctuationConfig {
+            target_hinshis: vec!["助動詞"],
+            rate: 100,
+        };
+        let actual = Generator::insert_punctuations("どうしちゃったのかな".to_string(), pconfig);
+        assert_eq!(expected, actual);
+    }
+
+    #[test]
+    fn test_insert_punctuations3() {
+        let expected = "どうしちゃった、のか、な、".to_string();
+        let pconfig = PunctuationConfig {
+            target_hinshis: vec!["助動詞", "助詞"],
+            rate: 100,
+        };
+        let actual = Generator::insert_punctuations("どうしちゃったのかな".to_string(), pconfig);
+        assert_eq!(expected, actual);
+    }
+}

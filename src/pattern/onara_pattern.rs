@@ -80,7 +80,11 @@ impl OnaraPattern {
             &*(r"^(.+)(\p{Hiragana}{".to_string() + &*number.to_string() + r"})([^\p{Hiragana}]*)"),
         )
         .unwrap();
-        let hiraganas = re.captures(&*message).unwrap();
+        let hiraganas = re.captures(&*message);
+        let hiraganas = match hiraganas {
+            None => return message,
+            Some(n) => n
+        };
         if hiraganas.len() != 4 {
             return message;
         }
@@ -89,5 +93,38 @@ impl OnaraPattern {
                 .katakana()
                 .to_string()
             + hiraganas.get(3).unwrap().as_str()
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn test_katakana_katsuyou1() {
+        let expected = "なんちゃッテ".to_string();
+        let actual = OnaraPattern::katakana_katsuyou("なんちゃって".to_string(), 2);
+        assert_eq!(actual, expected)
+    }
+
+    #[test]
+    fn test_katakana_katsuyou2() {
+        let expected = "どうしちゃったノカナ{EMOJI_POS}".to_string();
+        let actual = OnaraPattern::katakana_katsuyou("どうしちゃったのかな{EMOJI_POS}".to_string(), 3);
+        assert_eq!(actual, expected)
+    }
+
+    #[test]
+    fn test_katakana_katsuyou3() {
+        let expected = "どうしちゃったのかな{EMOJI_POS}".to_string();
+        let actual = OnaraPattern::katakana_katsuyou("どうしちゃったのかな{EMOJI_POS}".to_string(), 0);
+        assert_eq!(actual, expected)
+    }
+
+    #[test]
+    fn test_katakana_katsuyou4() {
+        let expected = "東西南北{EMOJI_POS}".to_string();
+        let actual = OnaraPattern::katakana_katsuyou("東西南北{EMOJI_POS}".to_string(), 2);
+        assert_eq!(actual, expected)
     }
 }

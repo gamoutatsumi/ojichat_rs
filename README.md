@@ -1,4 +1,4 @@
-# ojichat_rs
+# ojichat
 
 [![Crates.io](https://img.shields.io/crates/v/ojichat)](https://crates.io/crates/ojichat)
 [![MIT LICENSE](http://img.shields.io/badge/license-MIT-blue.svg?style=flat)](LICENSE)
@@ -22,8 +22,12 @@ nightly-x86_64-unknown-linux-gnu (default)
 ```rust
 use ojichat::ojichat::get_message;
 
-fn main() {
-    println!("{}", get_message(None, None, None))
+fn print_message(
+    target: Option<String>,
+    emoji_num: Option<usize>,
+    punctuation_level: Option<usize>,
+) {
+    println!("{}", get_message(target, emoji_num, punctuation_level))
 }
 ```
 
@@ -33,9 +37,7 @@ or
 cargo run --example ojichat
 ```
 
-```text
-オレはチアキちゃんの味方だからネ僕は、すごく心配だよ💦(^▽^;)そんなときは、美味しいもの食べて、元気出さなきゃだね
-```
+> オレはチアキちゃんの味方だからネ僕は、すごく心配だよ💦(^▽^;)そんなときは、美味しいもの食べて、元気出さなきゃだね
 
 ## ライセンス
 
