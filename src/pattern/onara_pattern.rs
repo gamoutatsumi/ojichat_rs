@@ -83,7 +83,7 @@ impl OnaraPattern {
         let hiraganas = re.captures(&*message);
         let hiraganas = match hiraganas {
             None => return message,
-            Some(n) => n
+            Some(n) => n,
         };
         if hiraganas.len() != 4 {
             return message;
@@ -110,14 +110,16 @@ mod tests {
     #[test]
     fn test_katakana_katsuyou2() {
         let expected = "どうしちゃったノカナ{EMOJI_POS}".to_string();
-        let actual = OnaraPattern::katakana_katsuyou("どうしちゃったのかな{EMOJI_POS}".to_string(), 3);
+        let actual =
+            OnaraPattern::katakana_katsuyou("どうしちゃったのかな{EMOJI_POS}".to_string(), 3);
         assert_eq!(actual, expected)
     }
 
     #[test]
     fn test_katakana_katsuyou3() {
         let expected = "どうしちゃったのかな{EMOJI_POS}".to_string();
-        let actual = OnaraPattern::katakana_katsuyou("どうしちゃったのかな{EMOJI_POS}".to_string(), 0);
+        let actual =
+            OnaraPattern::katakana_katsuyou("どうしちゃったのかな{EMOJI_POS}".to_string(), 0);
         assert_eq!(actual, expected)
     }
 
