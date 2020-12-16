@@ -20,3 +20,6 @@ lindera-core = "0.7.1"
 once_cell = "1.5.2"
 rand = "0.7.3"
 regex = "1.4.2"
+
+[dev-dependencies]
+rusty-hook = "0.11.2"
