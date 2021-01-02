@@ -1,6 +1,6 @@
 [package]
 name = "ojichat"
-version = "0.1.2"
+version = "0.1.3"
 authors = ["Tatsumi Gamou <tatsumigamou@yahoo.co.jp>"]
 edition = "2018"
 
