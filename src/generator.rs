@@ -49,7 +49,7 @@ impl Generator {
     fn get_random_firstname() -> String {
         let name = gimei::female();
         let mut rng = thread_rng();
-        let n: i32 = rng.gen_range(0, 2);
+        let n: i32 = rng.gen_range(0..2);
         match n {
             0 => name.first.kanji,
             1 => name.first.katakana,
@@ -60,7 +60,7 @@ impl Generator {
 
     fn get_random_name_suffix() -> &'static str {
         let mut rng = thread_rng();
-        let n: i32 = rng.gen_range(0, 99);
+        let n: i32 = rng.gen_range(0..99);
         if n < 5 {
             // たまに呼び捨てにするおじさん
             ""
@@ -92,7 +92,7 @@ impl Generator {
                     break;
                 }
             }
-            if hinshi_flag && rng.gen_range(1, 100) <= config.rate {
+            if hinshi_flag && rng.gen_range(1..100) <= config.rate {
                 result += token.text;
                 result += "、"
             } else {
