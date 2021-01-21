@@ -24,7 +24,7 @@ regex = "1.4.2"
 [target.'cfg(wasm32)'.dependencies.rand]
 version = "0.8.0"
 features = [
-  "wasm-bindgen"
+  "getrandom"
 ]
 
 [dev-dependencies]
