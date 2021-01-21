@@ -30,5 +30,9 @@ features = [
   "getrandom"
 ]
 
+[target.'cfg(wasm32)'.dependencies.getrandom]
+version = "0.2"
+features = ["js"]
+
 [dev-dependencies]
 rusty-hook = "0.11.2"
