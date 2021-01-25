@@ -13,7 +13,7 @@ readme = "README.md"
 license = "MIT"
 
 [dependencies]
-gimei = "0.1.1"
+gimei = { git = "https://github.com/gamoutatsumi/gimei-rust" }
 kanaria = "0.2.0"
 lindera = "0.7.1"
 lindera-core = "0.7.1"
